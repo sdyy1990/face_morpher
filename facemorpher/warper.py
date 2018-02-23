@@ -137,5 +137,6 @@ def test_local():
   plt.imshow(blended_img)
   plt.show()
 
+
 if __name__ == "__main__":
   test_local()

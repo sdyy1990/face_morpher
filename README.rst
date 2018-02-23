@@ -7,7 +7,7 @@ Face Morpher
 
 Built with Python, OpenCV, Numpy, Scipy, Stasm.
 
-Supports Python 2.7 / Python 3+ and OpenCV 2.4.9 / OpenCV 3.0
+Supported on Python 2.7, Python 3.5+ and OpenCV 3.2, 3.4 on macOS High Sierra and 64bit Linux
 
 Requirements
 --------------
@@ -89,17 +89,19 @@ All options listed in ``averager.py`` (pasted below):
     Usage:
       averager.py --images=<images_folder> [--blur] [--alpha] [--plot]
                 [--width=<width>] [--height=<height>] [--out=<filename>]
+                [--destimg=<filename>]
 
     Options:
-      -h, --help         Show this screen.
-      --images=<folder>  Folder to images (.jpg, .jpeg, .png)
-      --blur             Flag to blur edges of image [default: False]
-      --alpha            Flag to save with transparent background [default: False]
-      --width=<width>    Custom width of the images/video [default: 500]
-      --height=<height>  Custom height of the images/video [default: 600]
-      --out=<filename>   Filename to save the average face [default: result.png]
-      --plot             Flag to display the average face [default: False]
-      --version          Show version.
+      -h, --help             Show this screen.
+      --images=<folder>      Folder to images (.jpg, .jpeg, .png)
+      --blur                 Flag to blur edges of image [default: False]
+      --alpha                Flag to save with transparent background [default: False]
+      --width=<width>        Custom width of the images/video [default: 500]
+      --height=<height>      Custom height of the images/video [default: 600]
+      --out=<filename>       Filename to save the average face [default: result.png]
+      --destimg=<filename>   Destination face image to overlay average face
+      --plot                 Flag to display the average face [default: False]
+      --version              Show version.
 
 Steps (facemorpher folder)
 --------------------------
@@ -206,6 +208,14 @@ Additional options are exactly the same as the command line
 
     # To average, supply an array of face images:
     facemorpher.averager(['image1.png', 'image2.png'], plot=True)
+
+
+Once pip installed, 2 binaries are also available as a command line utility:
+
+::
+
+    $ facemorpher --src=<src_imgpath> --dest=<dest_imgpath> --plot
+    $ faceaverager --images=<images_folder> --plot
 
 
 Details
