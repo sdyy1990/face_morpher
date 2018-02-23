@@ -33,12 +33,12 @@ import scipy.ndimage
 import numpy as np
 import os
 
-from facemorpher import locator
-from facemorpher import aligner
-from facemorpher import warper
-from facemorpher import blender
-from facemorpher import plotter
-from facemorpher import videoer
+import locator
+import aligner
+import warper
+import blender
+import plotter
+import videoer
 
 from skimage.draw import circle
 from skimage.draw import line

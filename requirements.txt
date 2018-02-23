@@ -4,3 +4,5 @@ matplotlib
 docopt
 Pillow
 future
+scikit-image
+
