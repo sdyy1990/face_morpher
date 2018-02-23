@@ -39,7 +39,7 @@ def grid_coordinates(points):
   return np.asarray([(x, y) for y in range(ymin, ymax)
                      for x in range(xmin, xmax)], np.uint32)
 
-def process_warp(src_img, result_img, tri_affines, dst_points, delaunay):
+def process_warp(src_img, result_img, tri_affines, dst_points, delaunay, dots, triangle):
   """
   Warp each triangle from the src_image only within the
   ROI of the destination image (points in dst_points).
@@ -55,6 +55,8 @@ def process_warp(src_img, result_img, tri_affines, dst_points, delaunay):
                         np.vstack((coords.T, np.ones(num_coords))))
     x, y = coords.T
     result_img[y, x] = bilinear_interpolate(src_img, out_coords)
+  if dots:
+      print roi_coords
 
   return None
 
@@ -75,7 +77,7 @@ def triangular_affine_matrices(vertices, src_points, dest_points):
     mat = np.dot(src_tri, np.linalg.inv(dst_tri))[:2, :]
     yield mat
 
-def warp_image(src_img, src_points, dest_points, dest_shape, dtype=np.uint8):
+def warp_image(src_img, src_points, dest_points, dest_shape, dots=False, triangle=False, dtype=np.uint8):
   # Resultant image will not have an alpha channel
   num_chans = 3
   src_img = src_img[:, :, :3]
@@ -87,7 +89,7 @@ def warp_image(src_img, src_points, dest_points, dest_shape, dtype=np.uint8):
   tri_affines = np.asarray(list(triangular_affine_matrices(
     delaunay.simplices, src_points, dest_points)))
 
-  process_warp(src_img, result_img, tri_affines, dest_points, delaunay)
+  process_warp(src_img, result_img, tri_affines, dest_points, delaunay, dots, triangle)
 
   return result_img
 

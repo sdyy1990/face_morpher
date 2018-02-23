@@ -4,6 +4,8 @@ Align face and image sizes
 from __future__ import division
 import cv2
 import numpy as np
+from skimage.draw import circle
+from skimage.draw import line
 
 def positive_cap(num):
   """ Cap a number to ensure positivity
@@ -99,5 +101,14 @@ def resize_align(img, points, size):
   # Scale and align face points to the crop
   points[:, 0] = (points[:, 0] * scale) + (border_x - roi_x)
   points[:, 1] = (points[:, 1] * scale) + (border_y - roi_y)
-
+#  r = 4
+#  for i in xrange(len(points)):
+#      rr, cc = circle(points[i,1],points[i,0], r)
+#      crop[rr, cc] = [105,105,0]
+#     for dx in xrange(-r,r):
+#       if  points[i,0]+dx < len(crop) and points[i,0]+dx>=0:
+#         for dy in xrange(-r,r):
+#           if  points[i,1]+dy < len(crop[0]) and points[i,1]+dy>=0:
+#            crop[points[i,1]+dx,points[i,0]+dy] = [105 , 255 , 0]
+#      draw((points[i,0]-r, points[i,1]-r, points[i,0]+r, points[i,1]+r), fill=(255,0,0))
   return (crop, points)

@@ -26,7 +26,7 @@ def apply_mask(img, mask):
 
   return masked_img
 
-def weighted_average(img1, img2, percent=0.5):
+def weighted_average(img1, img2, percent=0.5, dots=False, triangle=False):
   if percent <= 0:
     return img2
   elif percent >= 1:
